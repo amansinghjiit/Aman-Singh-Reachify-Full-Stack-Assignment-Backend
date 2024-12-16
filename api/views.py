@@ -2,12 +2,10 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from api.models import Product
 from api.serializers import ProductSerializer
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
     
     def create(self, request, *args, **kwargs):
         serializer = ProductSerializer(data=request.data)
